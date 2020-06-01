@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid top">
+    <div class="row text-center">
+        <div class="col-md-2"></div>
+
+        <div class="col-md-8">
+            {% for image in images %}
+            <div class="images">
+                <div style="margin-top: 20px;margin-bottom: 10px;">
+                    <div>
+                        <img src="https://i.vippng.com/png/small/363-3631840_profile-icon-png-profile-icon-png-white-transparent.png" alt="avatar" style="border:solid 1px rgba(136,136,136,0.88);border-radius: 50%; height: 50px;width:50px;">
+                        <a href="{% url 'profile' username=image.profile.username %}" class="name">{{image.profile.username }}</a>
+                    </div>
+                    <hr>
+                    <hr>
+                    <div>
+                        <img src="{{image.image.url}}" class=" img img-responsive img-thumbnail img" style="height: 400px; width:500px; margin-bottom: 10px; padding: 10px;" data-toggle="modal" data-target="#{{image.id}}"><br><br>
+                        <p class="card-text"> Caption ~ {{image.caption|safe}} </p>
+                        {% for comment in comments %}
+                        <p class="card-text">Comments ~ {{comment.comment|safe}}</p>
+                        {% endfor %}
+                        <ul class=" list-inline home-text">
+                            <li class="list-inline-item">
+                                Like
+                                <a href="{% url 'singleImage' image_id=image.id %}"><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                Comment <a href="{% url 'singleImage' image_id=image.id %}"><i class="fa fa-comment-o fa-2x" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p>Posted At {{ image.posted}}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <h2>No images now. Try later after uploading some</h2>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-2"></div>
+
+    </div>
+    <hr>
+    <footer>
+        <h4 class="text-center copy">&copy; Dan Njoroge - 2020</h4>
+    </footer>
+</div>
+{% endblock %}
