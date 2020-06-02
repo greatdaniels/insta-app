@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <nav class="navbar shadow-sm p-3 mb-5 bg-white" style="border-bottom: solid 1px #d4d4d4;">
+    <div class="container" style="width: 78%;">
+      <div class="navbar-header">
+        <a href="{% url 'index' %}" class="logo-img"><img
+            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIKdmlld0JveD0iMCAwIDI2IDI2IgpzdHlsZT0iIGZpbGw6IzAwMDAwMDsiPjxwYXRoIGQ9Ik0gNy41NDY4NzUgMCBDIDMuMzkwNjI1IDAgMCAzLjM5MDYyNSAwIDcuNTQ2ODc1IEwgMCAxOC40NTMxMjUgQyAwIDIyLjYwOTM3NSAzLjM5MDYyNSAyNiA3LjU0Njg3NSAyNiBMIDE4LjQ1MzEyNSAyNiBDIDIyLjYwOTM3NSAyNiAyNiAyMi42MDkzNzUgMjYgMTguNDUzMTI1IEwgMjYgNy41NDY4NzUgQyAyNiAzLjM5MDYyNSAyMi42MDkzNzUgMCAxOC40NTMxMjUgMCBaIE0gNy41NDY4NzUgMiBMIDE4LjQ1MzEyNSAyIEMgMjEuNTI3MzQ0IDIgMjQgNC40Njg3NSAyNCA3LjU0Njg3NSBMIDI0IDE4LjQ1MzEyNSBDIDI0IDIxLjUyNzM0NCAyMS41MzEyNSAyNCAxOC40NTMxMjUgMjQgTCA3LjU0Njg3NSAyNCBDIDQuNDcyNjU2IDI0IDIgMjEuNTMxMjUgMiAxOC40NTMxMjUgTCAyIDcuNTQ2ODc1IEMgMiA0LjQ3MjY1NiA0LjQ2ODc1IDIgNy41NDY4NzUgMiBaIE0gMjAuNSA0IEMgMTkuNjcxODc1IDQgMTkgNC42NzE4NzUgMTkgNS41IEMgMTkgNi4zMjgxMjUgMTkuNjcxODc1IDcgMjAuNSA3IEMgMjEuMzI4MTI1IDcgMjIgNi4zMjgxMjUgMjIgNS41IEMgMjIgNC42NzE4NzUgMjEuMzI4MTI1IDQgMjAuNSA0IFogTSAxMyA2IEMgOS4xNDQ1MzEgNiA2IDkuMTQ0NTMxIDYgMTMgQyA2IDE2Ljg1NTQ2OSA5LjE0NDUzMSAyMCAxMyAyMCBDIDE2Ljg1NTQ2OSAyMCAyMCAxNi44NTU0NjkgMjAgMTMgQyAyMCA5LjE0NDUzMSAxNi44NTU0NjkgNiAxMyA2IFogTSAxMyA4IEMgMTUuNzczNDM4IDggMTggMTAuMjI2NTYzIDE4IDEzIEMgMTggMTUuNzczNDM4IDE1Ljc3MzQzOCAxOCAxMyAxOCBDIDEwLjIyNjU2MyAxOCA4IDE1Ljc3MzQzOCA4IDEzIEMgOCAxMC4yMjY1NjMgMTAuMjI2NTYzIDggMTMgOCBaIj48L3BhdGg+PC9zdmc+"
+            alt="" width="15%" style="padding-right: 24px; border-right: black solid 1px;" class="border-rt"></a>
+        
+        <a class="navbar-brand" href="{% url 'index' %}"><img
+            src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png" alt=""
+            width="60%" style="padding-left: 10px;"></a>
+      </div>
+      <!-- Adding a search form  -->
+      <div class="" style="float: left;">
+
+        <form class="navbar-form" role="search" action=""  style="width: 80%;">
+
+          <div class=" bg-light shadow-sm" style="border: solid 1px #e7e7e7; border-radius: 3px;">
+            <div class="input-group">
+              <div class="input-group-btn">
+                <button id="button-addon1" type="submit" class="btn btn-link text-secondary"><i
+                    class="fa fa-search"></i></button>
+              </div>
+              <input type="text" placeholder="Search" aria-describedby="button-addon1"
+                class="form-control border-0 bg-light" name="article">
+            </div>
+          </div>
+
+
+        </form>
+      </div>
+      <!-- search form end -->
+      <div class="">
+        {% if user.is_authenticated %}
+        <div>
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button"
+              aria-expanded="false"><img src="https://img.icons8.com/pastel-glyph/80/000000/gender-neutral-user.png" width="40px">
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu text-center" role="menu"style="font-family: 'PT Sans', sans-serif;">
+              <li class="nav-item">
+                <a class="nav-link open-nav" href="{% url 'profile' username=user %}" style="color: black;">{{user|title}} <i class="fa fa-user"></i></a>
+
+              </li>
+              
+              <li>
+                <a href="/logout" style="color: black;">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        {% else %}
+        <li>
+          <a class='btn btn-default' href="/accounts/login" >Login</a>
+        </li>
+
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+</body>
+
+</html>
