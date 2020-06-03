@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'', include('instagram.urls')),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^logout/$', views.logout, {"next_page": '/'}),
-    # url(r'^instagram/', include('instagram.urls'))
+    url(r'^tinymce/', include('tinymce.urls')),
 ]

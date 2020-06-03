@@ -1,9 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from pyuploadcare.dj.models import ImageField
+from tinymce.models import HTMLField
 
-class Profiles(models.Model):
-    image = models.ImageField(blank=True)
-    bio = models.CharField(max_length=100)
+class Profile(models.Model):
+    image = ImageField(blank = True)
+    bio = HTMLField()
     user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
     
     def save_profile(self):
@@ -12,26 +14,26 @@ class Profiles(models.Model):
     def delete_profile(self):
         self.delete()
         
-    @classmethod
+    @classmethod 
     def get_profile_by_name(cls, search_term):
         profile = cls.objects.filter(user__username__icontains = search_term)
         return profile
     
     @classmethod
     def filter_profile_by_id(cls, id):
-        profile = Profiles.objects.filter(user = id).first()
+        profile = Profile.objects.filter(user = id).first()
         return profile
     
     @classmethod
     def get_profile_by_id(cls,id):
-        profile = Profiles.objects.get(user = id)
+        profile = Profile.objects.get(user = id)
         return profile
     
     
     
-class Images(models.Model):
-    image = models.ImageField(blank=True, )
-    caption = models.CharField(max_length=100)
+class Image(models.Model):
+    image = ImageField(blank = True,)
+    caption = HTMLField()
     posted = models.DateTimeField(auto_now=True)
     profile = models.ForeignKey(User,on_delete=models.CASCADE)
     
@@ -46,26 +48,26 @@ class Images(models.Model):
         
     @classmethod  
     def get_image_by_id(cls,id):
-        image = Images.objects.get(pk=id)
+        image = Image.objects.get(pk=id)
         return image
     
     @classmethod
     def get_profile_images(cls,profile):
-        images = Images.objects.filter(profile__pk= profile)
+        images = Image.objects.filter(profile__pk= profile)
         return images
     
     @classmethod
     def get_all_images(cls):
-        images = Images.objects.all()
+        images = Image.objects.all()
         return images
     
     
     
     
-class Comments(models.Model):
+class Comment(models.Model):
     comment = models.CharField(max_length=100)
     posted = models.DateTimeField(auto_now=True)
-    image = models.ForeignKey(Images,on_delete=models.CASCADE)
+    image = models.ForeignKey(Image,on_delete=models.CASCADE)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     
     def save_comment(self):
@@ -76,7 +78,15 @@ class Comments(models.Model):
         
     @classmethod
     def get_comment_by_image(cls,id):
-        comment = Comments.objects.filter(image__pk = id)
+        comment = Comment.objects.filter(image__pk = id)
         return comment
+
+
+class Follow(models.Model):
+    follower = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='following')
+    followed = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='followers')
+
+    def __str__(self):
+        return f'{self.follower} Follow'
     
     

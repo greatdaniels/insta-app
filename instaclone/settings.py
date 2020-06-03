@@ -31,8 +31,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'instagram.apps.InstagramConfig',
+    'instagram',
     'bootstrap4',
+    'tinymce',
+    'pyuploadcare.dj',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -79,7 +81,7 @@ WSGI_APPLICATION = 'instaclone.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'instagram',
+        'NAME': 'instaclone',
         'USER': 'dannyboy',
         'PASSWORD': 'dannyboy',
     }
@@ -117,6 +119,11 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+UPLOADCARE = {
+    'pub_key':'db823c4b1c533881bf6f',
+    'secret':'164525714322a92180cc',
+}
 
 
 # Static files (CSS, JavaScript, Images)

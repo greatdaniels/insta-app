@@ -1,11 +1,11 @@
-# gallery-app
+# insta-app
 
 ## Author
 
 [Dan_Njoroge](https://github.com/greatdaniels)
 
 # Description
-A personal gallery application that displays my photos for others to view. You can visit the live site on `https://instagram-mc27.herokuapp.com/`
+This is a web application that mimics the Instagram experience, built with Django. You can visit the live site on `https://instagram-mc27.herokuapp.com/`
 
 ## User Story
 
